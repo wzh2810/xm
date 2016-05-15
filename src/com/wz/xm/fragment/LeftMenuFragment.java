@@ -4,9 +4,7 @@ import java.util.List;
 
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.os.Bundle;
 import android.util.TypedValue;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -21,6 +19,7 @@ import com.wz.xm.MainActivity;
 import com.wz.xm.R;
 import com.wz.xm.base.BaseFragment;
 import com.wz.xm.bean.FileBean;
+import com.wz.xm.bean.NetBean;
 
 public class LeftMenuFragment extends BaseFragment implements OnItemClickListener {
 	@ViewInject(R.id.file_menu_left_listview)
@@ -57,9 +56,12 @@ public class LeftMenuFragment extends BaseFragment implements OnItemClickListene
 		return view;
 	}
 
-	public void setData(List<FileBean> fileCenterMenuBeas) {
 	
-		mFileCenterMenuBeans = fileCenterMenuBeas;
+	
+	
+	public void setData(List<FileBean> fileCenterMenuBeans) {
+	
+		mFileCenterMenuBeans = fileCenterMenuBeans;
 	//	System.out.println("----------" + mFileCenterMenuBeans.toString());
 		// 刷新listview-->设置adapter
 	//	System.out.println("setData:=====" + mListView);

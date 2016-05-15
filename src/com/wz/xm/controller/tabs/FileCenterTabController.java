@@ -12,6 +12,7 @@ import com.wz.xm.bean.FileBean;
 import com.wz.xm.bean.Music;
 import com.wz.xm.controller.menu.MenuController;
 import com.wz.xm.controller.menu.MusicMenuController;
+import com.wz.xm.controller.menu.PicsLookMenuController;
 import com.wz.xm.controller.menu.PicsMenuController;
 import com.wz.xm.fragment.LeftMenuFragment;
 import com.wz.xm.utils.MediaUtils;
@@ -21,18 +22,16 @@ public class FileCenterTabController extends TabController {
 	private FrameLayout mFileCenterContentContainer;
 
 	private List<MenuController> mMenuControllers;
-	
-	private List<Music> mMusicList = new ArrayList<Music>();
-	
-	List<FileBean> fileCenterMenuBean = new ArrayList<FileBean>();
 
-	
+	private List<Music> mMusicList = new ArrayList<Music>();
+
+	List<FileBean> fileCenterMenuBean = new ArrayList<FileBean>();
 
 	public FileCenterTabController(Context context) {
 		super(context);
-		
-		initData(); 
-		
+
+		initData();
+
 	}
 
 	/**
@@ -57,40 +56,41 @@ public class FileCenterTabController extends TabController {
 	@Override
 	public void initStateBar() {
 		mTvTitle.setText("文件中心");
-		// mIbMenu.setVisibility(8);
 
 	}
 
 	public void getData() {
-		
+
 		LeftMenuFragment leftMenuFragment = ((MainActivity) mContext).getLeftMenuFragment();
-//		List<FileBean> fileCenterMenuBean = new ArrayList<FileBean>();
-		
-		fileCenterMenuBean.add(new FileBean(0,"音乐查询"));
-		fileCenterMenuBean.add(new FileBean(1,"图片浏览"));
-		
+		// List<FileBean> fileCenterMenuBean = new ArrayList<FileBean>();
+
+		fileCenterMenuBean.add(new FileBean(0, "音乐查询"));
+		fileCenterMenuBean.add(new FileBean(1, "图片浏览"));
+		fileCenterMenuBean.add(new FileBean(2, "图片查看"));
+
 		mMusicList = MediaUtils.songList;
-		
+
 		System.out.println("mMusicList" + mMusicList.size());
-		
-	//	System.out.println("=========" + fileCenterMenuBean.toString());
-		
-		
+
+		// System.out.println("=========" + fileCenterMenuBean.toString());
+
 		leftMenuFragment.setData(fileCenterMenuBean);
-		
-		
-	//	System.out.println("FileCenter===" + leftMenuFragment.toString());
+
+		// System.out.println("FileCenter===" + leftMenuFragment.toString());
 		/*--------------- 所有的MenuController通过集合进行管理 ---------------*/
 		mMenuControllers = new ArrayList<MenuController>();
 		for (FileBean fileBean : fileCenterMenuBean) {
 			MenuController menuController = null;
 			int type = fileBean.number;
 			switch (type) {
+			case 2:
+				menuController = new PicsLookMenuController(mContext);
+				break;
 			case 1:
 				menuController = new PicsMenuController(mContext);
 				break;
 			case 0:
-				menuController = new MusicMenuController(mContext,mMusicList);
+				menuController = new MusicMenuController(mContext, mMusicList);
 				break;
 
 			default:

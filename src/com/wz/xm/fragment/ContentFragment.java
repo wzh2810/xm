@@ -20,7 +20,7 @@ import com.wz.xm.controller.tabs.GovAffaireTabController;
 import com.wz.xm.controller.tabs.HomeTabController;
 import com.wz.xm.controller.tabs.FileCenterTabController;
 import com.wz.xm.controller.tabs.SettingTabController;
-import com.wz.xm.controller.tabs.SmartServiceTabController;
+import com.wz.xm.controller.tabs.NetworkServiceTabController;
 import com.wz.xm.controller.tabs.TabController;
 import com.wz.xm.views.NoScrollViewPager;
 
@@ -68,7 +68,7 @@ public class ContentFragment extends BaseFragment {
 		// 往ContentFragment对应的TabController集合中加入具体的TabController
 		mTabControllers.add(new HomeTabController(mContext));
 		mTabControllers.add(new FileCenterTabController(mContext));
-		mTabControllers.add(new SmartServiceTabController(mContext));
+		mTabControllers.add(new NetworkServiceTabController(mContext));
 		mTabControllers.add(new GovAffaireTabController(mContext));
 		mTabControllers.add(new SettingTabController(mContext));
 

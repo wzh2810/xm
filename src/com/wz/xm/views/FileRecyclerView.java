@@ -1,7 +1,7 @@
 package com.wz.xm.views;
 
 
-public class FileRecyclerView   {
+public class FileRecyclerView  {
 
 	
 
