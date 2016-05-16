@@ -37,13 +37,13 @@
         <RadioButton
             android:id="@+id/content_rb_smartservice"
             style="@style/content_rb_style"
-            android:drawableTop="@drawable/selector_rb_smartservice"
+            android:drawableTop="@drawable/selector_rb_govaffair"
             android:text="网络服务" />
 
         <RadioButton
             android:id="@+id/content_rb_govaffair"
             style="@style/content_rb_style"
-            android:drawableTop="@drawable/selector_rb_govaffair"
+            android:drawableTop="@drawable/selector_rb_smartservice"
             android:text="啦啦" />
 
         <RadioButton

@@ -49,7 +49,7 @@ public class MainActivity extends SlidingFragmentActivity {
 		// 2模式--菜单模式
 		slidingMenu.setMode(SlidingMenu.LEFT_RIGHT);
 		// 如果菜单模式是RIGHT/LEFT_RIGHT必须添加右菜单
-		slidingMenu.setSecondaryMenu(R.layout.fragment_main_menu_right);
+		slidingMenu.setSecondaryMenu(R.layout.fragment_main_menu_left);
 
 		// 2模式--拖动模式
 		/**

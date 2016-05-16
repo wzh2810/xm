@@ -12,13 +12,13 @@ import android.widget.BaseAdapter;
 
 
 
-public abstract class CommonAdapter<T> extends BaseAdapter {
+public abstract class CommonAdapter1<T> extends BaseAdapter {
 	public Context mContext;
 	public List<T> mDatas;
 	public LayoutInflater mInflater;
 	public int mlayoutId;
 	
-	public CommonAdapter(Context context,List<T> datas,int layoutId) {
+	public CommonAdapter1(Context context,List<T> datas,int layoutId) {
 		this.mContext = context;
 		this.mDatas = datas;
 		this.mlayoutId = layoutId;

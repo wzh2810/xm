@@ -37,7 +37,7 @@ public class NoScrollViewPager extends LazyViewPager {
 	public boolean onInterceptTouchEvent(MotionEvent ev) {
 		// return true;//不行,孩子无法处理事件
 		 return false;//可行
-		//return super.onInterceptTouchEvent(ev);// 可行
+	//	return super.onInterceptTouchEvent(ev);// 可行
 	}
 
 	/**
