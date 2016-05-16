@@ -9,10 +9,10 @@ package com.jeremyfeinstein.slidingmenu.lib;
 public final class R {
 	public static final class layout {
 		public static final int abs__popup_menu_item_layout = 0x7f03000d;
-		public static final int sherlock_spinner_dropdown_item = 0x7f03002b;
+		public static final int sherlock_spinner_dropdown_item = 0x7f030030;
 		public static final int abs__action_bar_tab = 0x7f030001;
 		public static final int abs__action_menu_item_layout = 0x7f030004;
-		public static final int sherlock_spinner_item = 0x7f03002c;
+		public static final int sherlock_spinner_item = 0x7f030031;
 		public static final int abs__screen_simple = 0x7f030010;
 		public static final int abs__action_bar_home = 0x7f030000;
 		public static final int abs__action_bar_tab_bar_view = 0x7f030002;
@@ -25,7 +25,7 @@ public final class R {
 		public static final int abs__simple_dropdown_hint = 0x7f030014;
 		public static final int abs__list_menu_item_icon = 0x7f03000b;
 		public static final int abs__action_menu_layout = 0x7f030005;
-		public static final int slidingmenumain = 0x7f03002d;
+		public static final int slidingmenumain = 0x7f030032;
 		public static final int abs__screen_simple_overlay_action_mode = 0x7f030011;
 		public static final int abs__search_dropdown_item_icons_2line = 0x7f030012;
 		public static final int abs__list_menu_item_checkbox = 0x7f03000a;
@@ -340,7 +340,7 @@ public final class R {
 		public static final int right = 0x7f050011;
 		public static final int abs__progress_circular = 0x7f05000e;
 		public static final int abs__action_menu_presenter = 0x7f05000d;
-		public static final int slidingmenumain = 0x7f050064;
+		public static final int slidingmenumain = 0x7f050072;
 		public static final int wrap_content = 0x7f050000;
 		public static final int abs__action_bar_title = 0x7f050015;
 		public static final int abs__search_voice_btn = 0x7f050036;
