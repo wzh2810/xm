@@ -44,7 +44,7 @@
             android:id="@+id/content_rb_govaffair"
             style="@style/content_rb_style"
             android:drawableTop="@drawable/selector_rb_smartservice"
-            android:text="啦啦" />
+            android:text="软件中心" />
 
         <RadioButton
             android:id="@+id/content_rb_setting"

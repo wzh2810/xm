@@ -9,10 +9,10 @@ package com.actionbarsherlock;
 public final class R {
 	public static final class layout {
 		public static final int abs__popup_menu_item_layout = 0x7f03000d;
-		public static final int sherlock_spinner_dropdown_item = 0x7f030030;
+		public static final int sherlock_spinner_dropdown_item = 0x7f030031;
 		public static final int abs__action_bar_tab = 0x7f030001;
 		public static final int abs__action_menu_item_layout = 0x7f030004;
-		public static final int sherlock_spinner_item = 0x7f030031;
+		public static final int sherlock_spinner_item = 0x7f030032;
 		public static final int abs__screen_simple = 0x7f030010;
 		public static final int abs__action_bar_home = 0x7f030000;
 		public static final int abs__action_bar_tab_bar_view = 0x7f030002;

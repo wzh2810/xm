@@ -182,11 +182,12 @@ public class NetworkServiceTabController extends TabController implements OnScro
 		// visibleItemCount：当前能看见的列表项个数（小半个也算）
 		// totalItemCount：列表项共数
 
-		System.out.println("firstVisibleItem" + firstVisibleItem + "++" +  visibleItemCount + "++" +totalItemCount);
+		System.out.println("----firstVisibleItem" + firstVisibleItem + "++" +  visibleItemCount + "++" +totalItemCount);
 		// 判断是否滚到最后一行
 		if (firstVisibleItem + visibleItemCount == totalItemCount && totalItemCount > 0) {
 			isLastRow = true;
 		}
+		footState(isLastRow);
 
 	}
 
@@ -200,7 +201,8 @@ public class NetworkServiceTabController extends TabController implements OnScro
 		//当滚到最后一行且停止滚动时，执行加载      
         if (isLastRow && scrollState == AbsListView.OnScrollListener.SCROLL_STATE_IDLE) {      
             //加载元素      
-            
+        	mPicNumber += 20;
+        	initData();
       
             isLastRow = false;      
         }    
@@ -241,7 +243,7 @@ public class NetworkServiceTabController extends TabController implements OnScro
 		default:
 			break;
 		}
-		return true;
+		return false;
 	}
 
 }

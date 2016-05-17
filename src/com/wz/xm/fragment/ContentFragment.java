@@ -16,7 +16,7 @@ import com.lidroid.xutils.view.annotation.ViewInject;
 import com.wz.xm.MainActivity;
 import com.wz.xm.R;
 import com.wz.xm.base.BaseFragment;
-import com.wz.xm.controller.tabs.GovAffaireTabController;
+import com.wz.xm.controller.tabs.AppManagerTabController;
 import com.wz.xm.controller.tabs.HomeTabController;
 import com.wz.xm.controller.tabs.FileCenterTabController;
 import com.wz.xm.controller.tabs.SettingTabController;
@@ -69,7 +69,7 @@ public class ContentFragment extends BaseFragment {
 		mTabControllers.add(new HomeTabController(mContext));
 		mTabControllers.add(new FileCenterTabController(mContext));
 		mTabControllers.add(new NetworkServiceTabController(mContext));
-		mTabControllers.add(new GovAffaireTabController(mContext));
+		mTabControllers.add(new AppManagerTabController(mContext));
 		mTabControllers.add(new SettingTabController(mContext));
 
 		// 通知设置viewpager的adapter,给viewpager添加具体的数据
