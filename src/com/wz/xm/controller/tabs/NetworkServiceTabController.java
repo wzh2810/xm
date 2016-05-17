@@ -37,12 +37,15 @@ public class NetworkServiceTabController extends TabController implements OnScro
 	@ViewInject(R.id.network_foot)
 	RelativeLayout network_foot;
 
+	@ViewInject(R.id.network_header)
+	RelativeLayout network_header;
 	// @ViewInject(R.id.network_pics_listview)
 	// ListView mListView;
 
 	private BitmapUtils mBitmapUtils;
 
-	private boolean isListView = true;
+	private boolean isfristRow = false;
+	
 	private View mHeaderView;
 	boolean isLastRow = false;
 
@@ -188,6 +191,7 @@ public class NetworkServiceTabController extends TabController implements OnScro
 			isLastRow = true;
 		}
 		footState(isLastRow);
+		headState(isfristRow);
 
 	}
 
@@ -209,6 +213,14 @@ public class NetworkServiceTabController extends TabController implements OnScro
 
 	}
 
+	public void headState(boolean isfirstRow) {
+		if (isLastRow) {
+			network_header.setVisibility(View.VISIBLE);
+		} else {
+			network_header.setVisibility(View.GONE);
+		}
+	}
+	
 	public void footState(boolean isLastRow) {
 		if (isLastRow) {
 			network_foot.setVisibility(View.VISIBLE);

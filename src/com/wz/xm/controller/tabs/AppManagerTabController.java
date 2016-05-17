@@ -60,12 +60,14 @@ public class AppManagerTabController extends TabController {
 
 	private AppInfo app;// 点击传递app信息 分享 卸载 开启 设置
 
+	private MyAdap adapter;
 	Handler han = new Handler() {
 
 		@Override
 		public void handleMessage(Message msg) {
 			tv_app_load.setVisibility(View.INVISIBLE);
-			lv_app_manager.setAdapter(new MyAdap());
+			adapter = new MyAdap();
+			lv_app_manager.setAdapter(adapter);
 		}
 
 	};
@@ -156,11 +158,12 @@ public class AppManagerTabController extends TabController {
 			}
 
 		});
-
+		unappReceive = new AppDeleteReceive();
 		IntentFilter inf = new IntentFilter();
 		inf.addAction(Intent.ACTION_PACKAGE_REMOVED);
 		inf.addDataScheme("package");
-		// registerReceiver(unappReceive, inf);
+		mContext.registerReceiver(unappReceive, inf);
+		
 
 		return view;
 	}
@@ -197,7 +200,7 @@ public class AppManagerTabController extends TabController {
 		@Override
 		public void onClick(View v) {
 			appDelete();
-
+			
 		}
 
 	}
@@ -364,17 +367,19 @@ public class AppManagerTabController extends TabController {
 				intent.setAction(Intent.ACTION_DELETE);
 				intent.setData(Uri.parse("package:" + app.getPackName()));
 				a.startActivity(intent);
+				
 			} else {
 				Toast.makeText(mContext, "您的手机没有Root权限", Toast.LENGTH_SHORT).show();
-
 			}
+			adapter.notifyDataSetChanged();
+			appData();
 		}
-		appData();
+		
 	}
 
 	@Override
 	public void initStateBar() {
-		// TODO Auto-generated method stub
+		
 		mTvTitle.setText("软件管理中心");
 	}
 

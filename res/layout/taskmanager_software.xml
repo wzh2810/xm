@@ -41,7 +41,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:text="拼命加载中。。。"
+            android:text=""
             android:textColor="#ff00ff"
             android:textSize="30sp"
             android:visibility="invisible" />

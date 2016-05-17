@@ -340,7 +340,7 @@ public final class R {
 		public static final int right = 0x7f050011;
 		public static final int abs__progress_circular = 0x7f05000e;
 		public static final int abs__action_menu_presenter = 0x7f05000d;
-		public static final int slidingmenumain = 0x7f050076;
+		public static final int slidingmenumain = 0x7f050077;
 		public static final int wrap_content = 0x7f050000;
 		public static final int abs__action_bar_title = 0x7f050015;
 		public static final int abs__search_voice_btn = 0x7f050036;

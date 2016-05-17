@@ -20,7 +20,7 @@ public class SettingTabController extends TabController {
 	public View initContentView(Context context) {
 		TextView tv = new TextView(context);
 		tv.setGravity(Gravity.CENTER);
-		tv.setText("设置");
+		tv.setText("还没想好");
 		return tv;
 	}
 
