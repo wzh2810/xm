@@ -2,8 +2,11 @@ package com.wz.xm.controller.tabs;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import android.content.Context;
+import android.os.Handler;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
@@ -47,10 +50,25 @@ public class HomeTabController extends TabController {
 
 	private List<ImageView> mListDatas;
 
+	private Timer mTimer;
+
 	private int[] pageImgs = { R.drawable.img1, R.drawable.img2, R.drawable.img3, R.drawable.img4, R.drawable.img5 };
 	private String[] titles = { "美女", "海景", "荷花", "美女", "最美傍晚" };
-	private int[] listImgs = { R.drawable.list1, R.drawable.list2, R.drawable.list3, R.drawable.list4,
-			R.drawable.list5 };
+	private int[] listImgs = { R.drawable.list1, R.drawable.list2, R.drawable.list3, R.drawable.list4, R.drawable.list5 };
+
+	private Handler mHandler = new Handler() {
+		public void handleMessage(android.os.Message msg) {
+
+			int currentItem = mPager.getCurrentItem();
+			if (currentItem == mPager.getAdapter().getCount() - 1) {
+				currentItem = 0;
+			} else {
+				currentItem++;
+			} // 设置最新的条目索引
+			mPager.setCurrentItem(currentItem);
+
+		};
+	};
 
 	public HomeTabController(Context context) {
 		super(context);
@@ -76,6 +94,21 @@ public class HomeTabController extends TabController {
 	public void initData() {
 		viewPageData();
 		listViewData();
+		startScroll();
+	}
+
+	public void startScroll() {
+		if (mTimer == null) {
+			mTimer = new Timer();
+			mTimer.schedule(new TimerTask() {
+
+				@Override
+				public void run() {
+					mHandler.sendEmptyMessage(0);
+
+				}
+			}, 3000, 3000);
+		}
 	}
 
 	public void listViewData() {
@@ -97,14 +130,17 @@ public class HomeTabController extends TabController {
 			// 添加点
 			View point = new View(mContext);
 			point.setBackgroundResource(R.drawable.point_normal);
-			LayoutParams params = new LayoutParams(10, 10);
+			LayoutParams params = new LayoutParams(10,10);
+			
 			if (i != 0) {
 				params.leftMargin = 10;
+				
 			} else {
 				point.setBackgroundResource(R.drawable.point_selected);
 
 				mHomePageTitle.setText(titles[i]);
 			}
+			point.setLayoutParams(params);
 			mPointContainer.addView(point, params);
 
 		}
