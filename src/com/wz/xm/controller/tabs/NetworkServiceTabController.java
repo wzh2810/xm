@@ -9,8 +9,11 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
 import android.widget.AbsListView;
 import android.widget.AbsListView.OnScrollListener;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
@@ -27,18 +30,19 @@ import com.lidroid.xutils.http.ResponseInfo;
 import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest.HttpMethod;
 import com.lidroid.xutils.view.annotation.ViewInject;
+import com.nineoldandroids.animation.Animator;
+import com.nineoldandroids.animation.AnimatorInflater;
 import com.wz.xm.R;
+import com.wz.xm.controller.tabs.NetworkServiceTabController.PicsAdapter;
 import com.wz.xm.utils.network.imageloader.ImageLoader;
 
-public class NetworkServiceTabController extends TabController implements OnScrollListener, OnTouchListener {
+public class NetworkServiceTabController extends TabController implements OnScrollListener, OnTouchListener, OnItemClickListener {
 	@ViewInject(R.id.network_pics_gridview)
 	GridView mGridView;
 
 	@ViewInject(R.id.network_foot)
 	RelativeLayout network_foot;
 
-	@ViewInject(R.id.network_header)
-	RelativeLayout network_header;
 	// @ViewInject(R.id.network_pics_listview)
 	// ListView mListView;
 
@@ -75,6 +79,8 @@ public class NetworkServiceTabController extends TabController implements OnScro
 		
 		mGridView.setOnScrollListener(this);
 		mGridView.setOnTouchListener(this);
+		mGridView.setOnItemClickListener(this);
+	
 		return view;
 	}
 
@@ -120,12 +126,16 @@ public class NetworkServiceTabController extends TabController implements OnScro
 		super.initData();
 	}
 
+	PicsAdapter mPicAdapter;
 	private void picsData() {
 		// System.out.println("-====mlist" + mlist.size());
-		mGridView.setAdapter(new PicsAdapter());
+		mPicAdapter = new PicsAdapter();
+		mGridView.setAdapter(mPicAdapter);
+		
 	}
 
 	class PicsAdapter extends BaseAdapter {
+		private int selectPic = -1;
 
 		@Override
 		public int getCount() {
@@ -147,6 +157,11 @@ public class NetworkServiceTabController extends TabController implements OnScro
 		public long getItemId(int position) {
 			return position;
 		}
+		
+		public void setNotifyDataChange(int id) {  
+            selectPic = id;  
+            super.notifyDataSetChanged();  
+        } 
 
 		@Override
 		public View getView(int position, View convertView, ViewGroup parent) {
@@ -161,7 +176,18 @@ public class NetworkServiceTabController extends TabController implements OnScro
 
 			}
 			String path = mListPics.get(position);
+			
 			mImageLoader.display(holder.mIvIcon, path);
+			
+			ImageView iv = holder.mIvIcon;
+			System.out.println("getView====" + iv);
+			
+//			if(selectPic == position) {
+//				Animator animator = AnimatorInflater.loadAnimator(mContext, R.anim.anim);
+//				holder.mIvIcon.setTag(animator);
+//				animator.start();
+//			}
+			
 			return convertView;
 		}
 
@@ -191,7 +217,7 @@ public class NetworkServiceTabController extends TabController implements OnScro
 			isLastRow = true;
 		}
 		footState(isLastRow);
-		headState(isfristRow);
+		
 
 	}
 
@@ -205,21 +231,26 @@ public class NetworkServiceTabController extends TabController implements OnScro
 		//当滚到最后一行且停止滚动时，执行加载      
         if (isLastRow && scrollState == AbsListView.OnScrollListener.SCROLL_STATE_IDLE) {      
             //加载元素      
-        	mPicNumber += 20;
-        	initData();
+        	int momreNumber = mPicNumber + 20;
+        	List<String> mMoreListPic = new ArrayList<String>();
+        	String path = "http://android.yangyuanguang.com/android/wallpager/chosenimg/";
+    		for (int i = mPicNumber + 1; i <= momreNumber; i++) {
+    			String url = path + i + ".jpg";
+    			mMoreListPic.add(url);
+    		}
+        	mListPics.addAll(mMoreListPic);
+    		
+        	//initData();
+    	//	picsData();
+    		mPicAdapter.notifyDataSetChanged();
       
             isLastRow = false;      
         }    
+        footState(isLastRow);
 
 	}
 
-	public void headState(boolean isfirstRow) {
-		if (isLastRow) {
-			network_header.setVisibility(View.VISIBLE);
-		} else {
-			network_header.setVisibility(View.GONE);
-		}
-	}
+	
 	
 	public void footState(boolean isLastRow) {
 		if (isLastRow) {
@@ -229,6 +260,19 @@ public class NetworkServiceTabController extends TabController implements OnScro
 		}
 	}
 
+	@Override
+	public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
+		Toast.makeText(mContext, position + "", Toast.LENGTH_LONG).show();
+		
+		
+		
+		PicsAdapter mAdapter = (PicsAdapter) parent.getAdapter();
+		
+		mAdapter.setNotifyDataChange(position);
+		
+	}
+
+	
 	float downX;
 	float downY;
 
@@ -244,6 +288,11 @@ public class NetworkServiceTabController extends TabController implements OnScro
 			float moveY = event.getY();
 			float dx = moveX - downX;
 			float dy = moveY - downY;
+			
+			if(Math.abs(dx) > Math.abs(dy)) {
+				return true;
+			}
+			
 			System.out.println("downX:" + downX);
 			System.out.println("moveX:" + moveX);
 			
@@ -258,4 +307,8 @@ public class NetworkServiceTabController extends TabController implements OnScro
 		return false;
 	}
 
+	
+
+	
+	
 }
